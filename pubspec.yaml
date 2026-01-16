@@ -1,0 +1,62 @@
+name: maroc_sport
+description: "A nouveau projet"
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  auto_size_text: ^3.0.0
+  flutter_svg: ^2.0.7
+  flutter_platform_widgets: ^9.0.0
+  socket_io_client: ^3.1.3
+  cupertino_icons: ^1.0.8
+  news_api_flutter_package: ^1.2.0
+  newsapi: 2.0.0
+  http: ">=0.13.6 <2.0.0"
+  file_picker: ^8.0.0 # ou la dernière version disponible
+  screen_builder: 
+   path: package/screen_builder
+  shared_preferences: ^2.2.2
+  geolocator: ^14.0.2
+  flutter_map: ^8.1.1
+  latlong2: ^0.9.0
+  image_picker: ^1.1.2
+  permission_handler: ^12.0.1 # pour gérer les permissions
+  permission_handler_android: ^13.0.1
+  dropdown_search: ^6.0.2
+  flutter_animate: ^4.0.0
+  shimmer: ^3.0.0
+  collection: ^1.17.2
+  file_selector: ^1.0.3
+  mime: ^2.0.0
+  geocoding: ^4.0.0
+  url_launcher: ^6.2.5
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+  font_awesome_flutter: ^10.1.0
+  test: ^1.26.2
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icon/
+    - assets/banner/
+    - assets/img/
+    - assets/pages/
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/log_app.png"
+  min_sdk_android: 21

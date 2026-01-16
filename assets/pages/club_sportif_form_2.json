@@ -1,0 +1,30 @@
+{
+  "component": "screen",
+  "props": { "title": "Connexion" },
+  "children": [
+    {
+      "component": "appbar",
+      "props": {
+        "title": "Connexion"
+      }
+    },
+    {
+      "component": "column",
+      "children": [
+        {
+          "component": "text",
+          "props": {
+            "text": "Information sur votre club sportif"
+          }
+        },
+        { "component": "spacer", "props": { "height": 20 } },
+        {
+          "component": "text",
+          "props": {
+            "text": "Formulaire d'inscription pour les clubs sportifs"
+          }
+        }
+      ]
+    }
+  ]
+}

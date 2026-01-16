@@ -1,0 +1,70 @@
+{
+  "component": "screen",
+  "props": { "title": "Communautés" },
+  "children": [
+    {
+      "component": "appbar",
+      "props": {
+        "title": "Communautés",
+        "backgroundColor": "white",
+        "centerTitle": false,
+        "elevation": 2
+      }
+    },
+    {
+      "component": "column",
+      "children": [
+        { "component": "spacer", "props": { "height": 40 } },
+        {
+          "component": "text",
+          "props": {
+            "text": "Communautés du Sport Marocain",
+            "style": "heading2",
+            "color": "darkCharcoal",
+            "textAlign": "center"
+          }
+        },
+        { "component": "spacer", "props": { "height": 20 } },
+        {
+          "component": "text",
+          "props": {
+            "text": "Rejoignez des millions de passionnés du sport au Maroc",
+            "style": "body",
+            "color": "grey",
+            "textAlign": "center"
+          }
+        },
+        { "component": "spacer", "props": { "height": 40 } },
+        {
+          "component": "column",
+          "children": [
+            {
+              "component": "button",
+              "props": {
+                "label": "Forum de Discussion",
+                "backgroundColor": "purplePrimary"
+              }
+            },
+            { "component": "spacer", "props": { "height": 12 } },
+            {
+              "component": "button",
+              "props": {
+                "label": "Groupes de Supporters",
+                "backgroundColor": "purplePrimary"
+              }
+            },
+            { "component": "spacer", "props": { "height": 12 } },
+            {
+              "component": "button",
+              "props": {
+                "label": "Événements Communautaires",
+                "backgroundColor": "purplePrimary"
+              }
+            }
+          ]
+        },
+        { "component": "spacer", "props": { "height": 40 } }
+      ]
+    }
+  ]
+}

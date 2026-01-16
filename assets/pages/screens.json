@@ -1,0 +1,323 @@
+{
+  "pages": [
+    {
+      "slug": "home",
+      "title": "Accueil",
+      "type": "scaffold",
+      "appBar": {
+        "type": "appbar.custom",
+        "title": "Maroc Sport",
+        "backgroundColor": "white",
+        "centerTitle": true,
+        "elevation": 2
+      },
+      "body": {
+        "type": "layout.safearea",
+        "child": {
+          "type": "layout.scroll",
+          "child": {
+            "type": "layout.column",
+            "mainAxisAlignment": "start",
+            "crossAxisAlignment": "center",
+            "children": [
+              {
+                "type": "spacer",
+                "height": 20
+              },
+              {
+                "type": "banner.publicite",
+                "imageSource": "assets/img/bg_sport.jpg",
+                "imageIsAsset": true,
+                "height": 200,
+                "borderRadius": "lg"
+              },
+              {
+                "type": "spacer",
+                "height": 20
+              },
+              {
+                "type": "text",
+                "text": "Bienvenue sur Maroc Sport",
+                "style": "heading2",
+                "color": "darkCharcoal",
+                "textAlign": "center"
+              },
+              {
+                "type": "spacer",
+                "height": 12
+              },
+              {
+                "type": "text",
+                "text": "Découvrez les événements, clubs et disciplines du sport marocain",
+                "style": "bodyMedium",
+                "color": "grey",
+                "textAlign": "center"
+              },
+              {
+                "type": "spacer",
+                "height": 30
+              },
+              {
+                "type": "layout.column",
+                "mainAxisAlignment": "start",
+                "crossAxisAlignment": "stretch",
+                "children": [
+                  {
+                    "type": "button.image",
+                    "label": "Événements",
+                    "imageSource": "assets/icon/events.png",
+                    "imageIsAsset": true,
+                    "backgroundColor": "purplePrimary",
+                    "onTap": {
+                      "type": "navigate",
+                      "page": "evenements"
+                    }
+                  },
+                  {
+                    "type": "spacer",
+                    "height": 12
+                  },
+                  {
+                    "type": "button.image",
+                    "label": "Clubs Sportifs",
+                    "imageSource": "assets/icon/clubs.png",
+                    "imageIsAsset": true,
+                    "backgroundColor": "purplePrimary",
+                    "onTap": {
+                      "type": "navigate",
+                      "page": "clubs"
+                    }
+                  },
+                  {
+                    "type": "spacer",
+                    "height": 12
+                  },
+                  {
+                    "type": "button.image",
+                    "label": "Disciplines",
+                    "imageSource": "assets/icon/disciplines.png",
+                    "imageIsAsset": true,
+                    "backgroundColor": "purplePrimary",
+                    "onTap": {
+                      "type": "navigate",
+                      "page": "disciplines"
+                    }
+                  },
+                  {
+                    "type": "spacer",
+                    "height": 12
+                  },
+                  {
+                    "type": "button.image",
+                    "label": "Actualités",
+                    "imageSource": "assets/icon/news.png",
+                    "imageIsAsset": true,
+                    "backgroundColor": "purplePrimary",
+                    "onTap": {
+                      "type": "navigate",
+                      "page": "actualites"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "spacer",
+                "height": 40
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "slug": "actualites",
+      "title": "Actualités",
+      "type": "scaffold",
+      "appBar": {
+        "type": "appbar.custom",
+        "title": "Actualités",
+        "backgroundColor": "white",
+        "centerTitle": false,
+        "elevation": 2
+      },
+      "body": {
+        "type": "layout.safearea",
+        "child": {
+          "type": "layout.column",
+          "mainAxisAlignment": "start",
+          "crossAxisAlignment": "stretch",
+          "children": [
+            {
+              "type": "spacer",
+              "height": 20
+            },
+            {
+              "type": "text",
+              "text": "Dernières actualités du sport marocain",
+              "style": "heading3",
+              "color": "darkCharcoal",
+              "textAlign": "center"
+            },
+            {
+              "type": "spacer",
+              "height": 20
+            },
+            {
+              "type": "layout.column",
+              "mainAxisAlignment": "start",
+              "crossAxisAlignment": "stretch",
+              "children": [
+                {
+                  "type": "layout.column",
+                  "mainAxisAlignment": "start",
+                  "crossAxisAlignment": "stretch",
+                  "children": [
+                    {
+                      "type": "image",
+                      "source": "https://via.placeholder.com/400x200",
+                      "isAsset": false,
+                      "width": null,
+                      "height": 200,
+                      "fit": "cover",
+                      "borderRadius": "md"
+                    },
+                    {
+                      "type": "spacer",
+                      "height": 12
+                    },
+                    {
+                      "type": "text",
+                      "text": "Titre de l'actualité",
+                      "style": "heading3",
+                      "color": "darkCharcoal"
+                    },
+                    {
+                      "type": "spacer",
+                      "height": 8
+                    },
+                    {
+                      "type": "text",
+                      "text": "Description courte de l'actualité concernant le sport marocain",
+                      "style": "bodyMedium",
+                      "color": "grey",
+                      "maxLines": 2,
+                      "overflow": "ellipsis"
+                    },
+                    {
+                      "type": "spacer",
+                      "height": 12
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "spacer",
+              "height": 40
+            }
+          ]
+        }
+      }
+    },
+    {
+      "slug": "communautes",
+      "title": "Communautés",
+      "type": "scaffold",
+      "appBar": {
+        "type": "appbar.custom",
+        "title": "Communautés",
+        "backgroundColor": "white",
+        "centerTitle": false,
+        "elevation": 2
+      },
+      "body": {
+        "type": "layout.safearea",
+        "child": {
+          "type": "layout.column",
+          "mainAxisAlignment": "center",
+          "crossAxisAlignment": "center",
+          "children": [
+            {
+              "type": "spacer",
+              "height": 40
+            },
+            {
+              "type": "text",
+              "text": "Communautés du Sport Marocain",
+              "style": "heading2",
+              "color": "darkCharcoal",
+              "textAlign": "center"
+            },
+            {
+              "type": "spacer",
+              "height": 20
+            },
+            {
+              "type": "text",
+              "text": "Rejoignez des millions de passionnés du sport au Maroc",
+              "style": "body",
+              "color": "grey",
+              "textAlign": "center"
+            },
+            {
+              "type": "spacer",
+              "height": 40
+            },
+            {
+              "type": "layout.column",
+              "mainAxisAlignment": "start",
+              "crossAxisAlignment": "stretch",
+              "children": [
+                {
+                  "type": "button.image",
+                  "label": "Forum de Discussion",
+                  "imageSource": "assets/icon/forum.png",
+                  "imageIsAsset": true,
+                  "backgroundColor": "purplePrimary",
+                  "onTap": {
+                    "type": "navigate",
+                    "page": "forum"
+                  }
+                },
+                {
+                  "type": "spacer",
+                  "height": 12
+                },
+                {
+                  "type": "button.image",
+                  "label": "Groupes de Supporters",
+                  "imageSource": "assets/icon/groups.png",
+                  "imageIsAsset": true,
+                  "backgroundColor": "purplePrimary",
+                  "onTap": {
+                    "type": "navigate",
+                    "page": "supporters"
+                  }
+                },
+                {
+                  "type": "spacer",
+                  "height": 12
+                },
+                {
+                  "type": "button.image",
+                  "label": "Événements Communautaires",
+                  "imageSource": "assets/icon/community_events.png",
+                  "imageIsAsset": true,
+                  "backgroundColor": "purplePrimary",
+                  "onTap": {
+                    "type": "navigate",
+                    "page": "community_events"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "spacer",
+              "height": 40
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "component": "screen",
+  "props": { "title": "Actualités" },
+  "children": [
+    {
+      "component": "appbar",
+      "props": {
+        "title": "Actualités",
+        "backgroundColor": "white",
+        "centerTitle": false,
+        "elevation": 2
+      }
+    },
+    {
+      "component": "column",
+      "children": [
+        { "component": "spacer", "props": { "height": 20 } },
+        {
+          "component": "text",
+          "props": {
+            "text": "Dernières actualités du sport marocain",
+            "style": "heading3",
+            "color": "darkCharcoal",
+            "textAlign": "center"
+          }
+        },
+        { "component": "spacer", "props": { "height": 20 } },
+        {
+          "component": "column",
+          "children": [
+            {
+              "component": "column",
+              "children": [
+                {
+                  "component": "image",
+                  "props": {
+                    "source": "https://via.placeholder.com/400x200",
+                    "isAsset": false,
+                    "height": 200,
+                    "fit": "cover",
+                    "borderRadius": "md"
+                  }
+                },
+                { "component": "spacer", "props": { "height": 12 } },
+                {
+                  "component": "text",
+                  "props": {
+                    "text": "Titre de l'actualité",
+                    "style": "heading3",
+                    "color": "darkCharcoal"
+                  }
+                },
+                { "component": "spacer", "props": { "height": 8 } },
+                {
+                  "component": "text",
+                  "props": {
+                    "text": "Description courte de l'actualité concernant le sport marocain",
+                    "style": "bodyMedium",
+                    "color": "grey",
+                    "maxLines": 2,
+                    "overflow": "ellipsis"
+                  }
+                },
+                { "component": "spacer", "props": { "height": 12 } }
+              ]
+            }
+          ]
+        },
+        { "component": "spacer", "props": { "height": 40 } }
+      ]
+    }
+  ]
+}

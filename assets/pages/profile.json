@@ -1,0 +1,15 @@
+{
+  "component": "screen",
+  "props": { "title": "Profile Page" },
+  "children": [
+    { "component": "appbar", "props": { "title": "Profile" } },
+    {
+      "component": "column",
+      "children": [
+        { "component": "text", "props": { "text": "Welcome to your profile" } },
+        { "component": "spacer", "props": { "height": "m" } },
+        { "component": "text", "props": { "text": "This is a profile page" } }
+      ]
+    }
+  ]
+}

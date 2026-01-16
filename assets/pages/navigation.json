@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "label": "Home",
+      "icon": "home",
+      "page": "home"
+    },
+    {
+      "label": "Profile",
+      "icon": "person",
+      "page": "profile"
+    }
+  ]
+}
