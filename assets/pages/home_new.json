@@ -1,16 +1,15 @@
 {
   "component": "screen",
-  "props": { "title": "Home Page" },
+  "props": {
+    "title": "Home Page",
+    "appBar": {
+      "title": "Maroc Sport",
+      "backgroundColor": "primary",
+      "centerTitle": true,
+      "elevation": 0
+    }
+  },
   "children": [
-    {
-      "component": "appbar",
-      "props": {
-        "title": "Maroc Sport",
-        "backgroundColor": "primary",
-        "centerTitle": true,
-        "elevation": 0
-      }
-    },
     {
       "component": "column",
       "children": [
@@ -22,7 +21,7 @@
             "textAlign": "center"
           }
         },
-        { "component": "spacer", "props": { "height": 10 } },
+        { "component": "container", "props": { "height": 10.0 } },
         {
           "component": "text",
           "props": {
@@ -31,21 +30,21 @@
             "textAlign": "center"
           }
         },
-        { "component": "spacer", "props": { "height": 30 } },
+        { "component": "container", "props": { "height": 30.0 } },
         {
           "component": "text",
           "props": {
             "text": "🚀 Banner ads !"
           }
         },
-        { "component": "spacer", "props": { "height": 20 } },
+        { "component": "container", "props": { "height": 20.0 } },
         {
           "component": "button",
           "props": {
             "label": "Trouvez votre club Sportif"
           }
         },
-        { "component": "spacer", "props": { "height": 20 } },
+        { "component": "container", "props": { "height": 20.0 } },
         {
           "component": "button",
           "props": {

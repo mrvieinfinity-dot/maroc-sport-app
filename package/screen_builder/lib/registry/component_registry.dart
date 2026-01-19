@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import '../core/logger.dart';
+import '../core/interfaces.dart';
 
 /// Registry for component builders
 class ComponentRegistry {
@@ -8,17 +9,21 @@ class ComponentRegistry {
 
   ComponentRegistry._internal();
 
-  final Map<String, Widget Function(BuildContext, Map<String, dynamic>)>
-      _builders = {};
+  final Map<String, ComponentBuilder> _builders = {};
 
   /// Registers a component builder for a given type
-  void register(String type,
-      Widget Function(BuildContext, Map<String, dynamic>) builder) {
+  void register(String type, ComponentBuilder builder) {
     _builders[type] = builder;
   }
 
   /// Retrieves a component builder for a given type
-  Widget Function(BuildContext, Map<String, dynamic>)? get(String type) {
-    return _builders[type];
+  ComponentBuilder? get(String type) {
+    final b = _builders[type];
+    if (b == null) {
+      SBLogger.warn('ComponentRegistry: no builder registered for "$type"');
+    } else {
+      SBLogger.info('ComponentRegistry: returning builder for "$type"');
+    }
+    return b;
   }
 }

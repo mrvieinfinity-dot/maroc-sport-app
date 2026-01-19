@@ -1,44 +1,27 @@
-import 'package:flutter/material.dart';
 // import 'registry/component_registry.dart';
 import 'registry/default_components.dart';
-import 'engine/actions/action_engine.dart';
-import 'engine/events/event_bus.dart';
-import 'engine/events/default_event_handlers.dart';
-import 'engine/events/event_handler.dart';
+import 'handle/action_handle.dart';
+import 'handle/event_handle.dart';
 import 'services/api/api_service.dart';
-import 'components/ui/popup.dart';
+import 'core/interfaces.dart';
+import 'core/interfaces/simple_resolver.dart';
+import 'config/screen_config.dart';
+import 'di/container.dart';
+import 'composers/page_composer.dart';
+import 'registry/component_registry.dart';
 
-/// Configuration for Screen Builder
-class ScreenBuilderConfig {
-  final String env; // 'prod', 'local', 'staging'
-  final String jsonPath; // Path to JSON files, e.g., 'assets/pages/'
-  final String homePage; // Default home page name
-  final String navigationFile; // Navigation JSON file path
-  final ApiService? apiAdapter;
-  final List<EventHandler>? eventHandlers;
-
-  ScreenBuilderConfig({
-    this.env = 'local',
-    this.jsonPath = 'assets/pages/',
-    required this.homePage,
-    required this.navigationFile,
-    this.apiAdapter,
-    this.eventHandlers,
-  });
-}
-
-/// Global instance of ScreenBuilderConfig
-ScreenBuilderConfig? _globalConfig;
+/// Global instance of ScreenConfig
+ScreenConfig? _globalConfig;
 
 /// Get the global config
-ScreenBuilderConfig? get screenBuilderConfig => _globalConfig;
+ScreenConfig? get screenBuilderConfig => _globalConfig;
 
 /// Initializes the Screen Builder system with configuration.
 ///
 /// [config] - Configuration including env, jsonPath, apiAdapter, eventHandlers.
-Future<void> initScreenBuilder({ScreenBuilderConfig? config}) async {
+Future<void> initScreenBuilder({ScreenConfig? config}) async {
   final cfg = config ??
-      ScreenBuilderConfig(
+      ScreenConfig(
           homePage: 'home', navigationFile: 'assets/pages/navigation.json');
 
   // Store config globally
@@ -50,40 +33,42 @@ Future<void> initScreenBuilder({ScreenBuilderConfig? config}) async {
   // Store jsonPath globally (perhaps in a service)
   // For now, assume host handles loading
 
-  // 1. Initialize TokenResolver with default tokens
-  // Tokens can be loaded from JSON or provided
+  // 1. Initialize DI Container
+  final container = DIContainer();
 
-  // 2. Initialize ComponentRegistry
+  // Register services
+  container.register<ApiService>(cfg.apiAdapter ?? ApiService());
+  container.register<EventHandle>(EventHandle());
+  container.register<ActionHandle>(ActionHandle());
+
+  // 2. Initialize TokenResolver with default tokens
+  // For now, empty tokens, can be loaded later
+  final tokens = <String, dynamic>{};
+
+  // Note: Old resolvers replaced by ResolverUtil in centralized architecture
+  // ResolverManager().register(ColorResolver(tokens));
+  // ResolverManager().register(SpacingResolver(tokens));
+  // ResolverManager().register(RadiusResolver(tokens));
+  // ResolverManager().register(TextStyleResolver(tokens));
+
+  // 3. Initialize ComponentRegistry
   // ComponentRegistry is a singleton, no need to create instance
 
-  // 3. Register default components
+  // 4. Register default components
   registerDefaultComponents();
 
-  // 4. Register host components if any (via config? but for now none)
+  // 5. Initialize ActionHandle
+  final actionHandle = container.get<ActionHandle>();
+  actionHandle.registerDefaults();
 
-  // 5. Initialize ActionEngine
-  final actionEngine = ActionEngine();
-  actionEngine.registerDefaults();
+  // 6. Initialize EventHandle and register default handlers
+  final eventHandle = container.get<EventHandle>();
+  // Note: Default event handlers are now integrated in EventHandle
 
-  // 6. Initialize EventBus and register default handlers
-  final eventBus = EventBus();
-  registerDefaultEventHandlers();
-  if (cfg.eventHandlers != null) {
-    for (final handler in cfg.eventHandlers!) {
-      eventBus.subscribe(handler.eventType, handler.handle);
-    }
-  }
-
-  // 7. Set up ApiService if provided
-  if (cfg.apiAdapter != null) {
-    ApiService.setInstance(cfg.apiAdapter!);
-  }
-
-  // TODO: Store config globally
+  // 7. Register PageComposer
+  final registry = ComponentRegistry(); // Assume singleton
+  final resolver = SimpleResolver(tokens);
+  container.register<PageComposer>(PageComposer(registry, resolver));
 }
 
 /// Sets up the popup component with the provided BuildContext.
-/// Call this after initScreenBuilder and when you have a BuildContext.
-void setupPopupWithContext(BuildContext context) {
-  setupPopup(context);
-}

@@ -1,8 +1,12 @@
 {
-  "component": "screen",
-  "props": { "title": "Profile Page" },
+  "title": "Profile Page",
+  "appBar": {
+    "component": "appbar",
+    "props": {
+      "title": "Profile"
+    }
+  },
   "children": [
-    { "component": "appbar", "props": { "title": "Profile" } },
     {
       "component": "column",
       "children": [

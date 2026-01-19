@@ -1,0 +1,11 @@
+{
+  "title": "Simple Page",
+  "children": [
+    {
+      "component": "text",
+      "props": {
+        "text": "This is a simple page without explicit screen definition!"
+      }
+    }
+  ]
+}

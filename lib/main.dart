@@ -12,13 +12,19 @@ void main() async {
 
   // Initialize with tokens
   await initScreenBuilder(
-    config: ScreenBuilderConfig(
-      env: 'prod', // 'local', 'staging', 'prod'
+    config: ScreenConfig(
+      env: 'local', // 'local', 'staging', 'prod'
+      essentialBuilder: {
       jsonPath: 'assets/pages/',
-      homePage: 'home',
+       homePage: 'home',
       navigationFile: 'assets/pages/navigation.json',
-      // apiAdapter: MyApiService(), // Optional custom API service
+      }
+      handleManage: {
       eventHandlers: [/* custom event handlers */],
+        
+      }
+      
+      // apiAdapter: MyApiService(), // Optional custom API service
     ),
   );
   runApp(const DemoApp());

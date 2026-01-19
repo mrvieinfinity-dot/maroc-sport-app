@@ -1,14 +1,20 @@
 {
-  "items": [
-    {
-      "label": "Home",
-      "icon": "home",
-      "page": "home"
-    },
-    {
+  "navigation": {
+    "type": "bottom",
+    "items": [
+      {
+        "label": "Accueil",
+        "icon": "home",
+        "route": "home"
+      },
+       {
       "label": "Profile",
       "icon": "person",
-      "page": "profile"
-    }
-  ]
+      "page": "profile"    },
+    {
+      "label": "Simple",
+      "icon": "star",
+      "page": "simple_page"    }
+    ]
+  }
 }

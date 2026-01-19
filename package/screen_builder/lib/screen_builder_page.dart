@@ -2,20 +2,7 @@ import 'package:flutter/material.dart';
 import 'bootstrap.dart';
 import 'engine/page_engine.dart';
 import 'models/page_model.dart';
-import 'navigation/navigation_adapter.dart';
 import 'dart:convert';
-
-/// Custom NavigationAdapter for ScreenBuilderPage
-class _ScreenBuilderNavigationAdapter extends NavigationAdapter {
-  final Function(String) onNavigate;
-
-  _ScreenBuilderNavigationAdapter(this.onNavigate);
-
-  @override
-  void navigate(String route) {
-    onNavigate(route);
-  }
-}
 
 /// Main widget for Screen Builder CMS
 class ScreenBuilderPage extends StatefulWidget {
@@ -30,12 +17,12 @@ class _ScreenBuilderPageState extends State<ScreenBuilderPage> {
   Map<String, dynamic>? _navigation;
   PreferredSizeWidget? _currentAppBar;
   Widget? _currentBody;
+  int _selectedIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    // Set navigation adapter
-    NavigationAdapter.setInstance(_ScreenBuilderNavigationAdapter(_loadPage));
+    // Navigation is now handled by NavigationHandle in the centralized architecture
     _loadNavigationAndHomePage();
   }
 
@@ -68,17 +55,24 @@ class _ScreenBuilderPageState extends State<ScreenBuilderPage> {
       final pageJson = await DefaultAssetBundle.of(context)
           .loadString('${config.jsonPath}$pageName.json');
       final pageData = jsonDecode(pageJson) as Map<String, dynamic>;
-      final components = pageData['children'] as List<dynamic>? ?? [];
+      // Ensure the PageModel contains the full page (root) so PageEngine
+      // can detect a 'screen' root and build a Scaffold.
       final page = PageModel(
         id: pageData['component'] ?? pageName,
-        components: components.cast<Map<String, dynamic>>(),
+        components: [pageData.cast<String, dynamic>()],
       );
+      debugPrint('Loaded page data: $pageData');
       final pageEngine = PageEngine();
-      final pageWidgets = pageEngine.buildPage(page);
+      final pageWidget = pageEngine.buildPage(context, page);
       setState(() {
         _currentPage = pageName;
-        _currentAppBar = pageWidgets['appBar'] as PreferredSizeWidget?;
-        _currentBody = pageWidgets['body'];
+        if (pageWidget is Scaffold) {
+          _currentAppBar = pageWidget.appBar;
+          _currentBody = pageWidget.body;
+        } else {
+          _currentAppBar = null;
+          _currentBody = pageWidget;
+        }
       });
     } catch (e) {
       // Handle error, perhaps show error page
@@ -110,11 +104,13 @@ class _ScreenBuilderPageState extends State<ScreenBuilderPage> {
                 label: label,
               );
             }).toList(),
-            currentIndex:
-                navItems.indexWhere((item) => item['page'] == _currentPage),
+            currentIndex: _selectedIndex,
             onTap: (index) {
               final page = navItems[index]['page'] as String?;
               if (page != null) {
+                setState(() {
+                  _selectedIndex = index;
+                });
                 _loadPage(page);
               }
             },
